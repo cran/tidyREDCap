@@ -1,0 +1,17 @@
+8734bd1f01e688604fb2ed097c2f1867 *DESCRIPTION
+69918473c0fd5170a10f538534376253 *LICENSE
+bae94694d28e6e6988fac2f900012322 *NAMESPACE
+17ab0a08401758ed3ec394c7da150589 *NEWS.md
+8e1ddc320df573052df826e5fb131258 *R/make_binary_word.R
+65cef5e0674056f6fc07dd2b3ca85c13 *R/utils-pipe.R
+00c94fdb8f3d39a2722de85695f18841 *README.md
+26b7e3227ed8e623e1fc7e721440eb9d *build/vignette.rds
+262ce24fc8ea24bc1486586a801a2e20 *inst/doc/makeBinaryWord.R
+92cde1f577976de6bc84f6858ab033b2 *inst/doc/makeBinaryWord.Rmd
+94dc14ffe0633a4b6a4fba49627466db *inst/doc/makeBinaryWord.html
+73968c18057d1bf3248878f936a90896 *man/make_binary_word.Rd
+4894ca10756199e25f914bfd34f517b0 *man/pipe.Rd
+11cb6cb3b229384008b065456d0e6322 *tests/testthat.R
+e2448b1c68a37182e654b86e2715e900 *tests/testthat/test-make_binary_word.R
+92cde1f577976de6bc84f6858ab033b2 *vignettes/makeBinaryWord.Rmd
+2eb75de04b349596a1468171957ab22f *vignettes/redcap.rds

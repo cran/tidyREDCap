@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Make Binary Word</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Make Binary Word</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyREDCap)</a></code></pre></div>
+<div id="first-load-redcap-data-into-r" class="section level1">
+<h1>First Load REDCap Data into R</h1>
+<p>The <code>redcapAPI</code> package can be used to load data directly into R. To learn more about it take a look <a href="https://github.com/nutterb/redcapAPI/wiki">here</a>. Normally the code to automatically pull data with an API includes a person’s secret code “key”. Because I want to keep this hidden, I have hidden this API key in my user profile and the code below includes a call to <code>Sys.getenv()</code> to grab the key. To learn more about working with APIs look <a href="https://daattali.gitbooks.io/stat545-ubc-github-io/bit003_api-key-env-var.html">here</a>. Also notice that the data is saved using the <code>saveRDS()</code> function. REDCap data loaded with the API has the variable labels added as an extra attribute. To allow this vignette to run without sharing my secret key I have saved the data to the package website.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">rcon &lt;-<span class="st"> </span>redcapAPI<span class="op">::</span><span class="kw">redcapConnection</span>(</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">url =</span> <span class="st">'https://redcap.miami.edu/api/'</span>, </a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">token =</span> <span class="kw">Sys.getenv</span>(<span class="st">&quot;NCI_API_Key&quot;</span>)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">redcap &lt;-<span class="st"> </span>redcapAPI<span class="op">::</span><span class="kw">exportRecords</span>(rcon)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">saveRDS</span>(redcap, <span class="dt">file =</span> <span class="st">&quot;redcap.rds&quot;</span>)</a></code></pre></div>
+</div>
+<div id="the-problem" class="section level1">
+<h1>The Problem</h1>
+<p>REDCap exports a “choose all that apply” question into a series of similarly-named, binary indicator variables. Using these variables individually, there is no obvious way to detect common patterns that people pick together. For example, in the Nacho Craving Index (NCI), respondents can indicate which of eight ingredients they are currently craving (i.e., Chips, Yellow cheese, Orange cheese, White cheese, Meat, Beans, Tomatoes, Peppers). These export into variables with names like <code>ingredients___1</code>, <code>ingredients___2</code>, etc. In REDCap, it is simple to get a summary of those individual variables by using the “Data Exports, Reports, and Stats” application within the REDCap interface and selecting “Stats &amp; Charts”. Once the data is in R, simple tables can be produced with the <code>table()</code> function, or beautiful tables can be created with the <code>tabyl()</code> and <code>adorn_pct_formatting()</code> functions from the <code>janitor</code> package. However, from these univariate tables it is impossible to judge which patterns of ingredients are craved together. For example, using the univariate tables, it is difficult to tell what pecentage of people are craving both chips and yellow cheese.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">redcap &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file =</span> <span class="st">&quot;./redcap.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># Chips</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">janitor<span class="op">::</span><span class="kw">tabyl</span>(redcap<span class="op">$</span>ingredients___<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">redcap$ingredients___1</th>
+<th align="right">n</th>
+<th align="left">percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Unchecked</td>
+<td align="right">21</td>
+<td align="left">70.0%</td>
+</tr>
+<tr class="even">
+<td align="left">Checked</td>
+<td align="right">9</td>
+<td align="left">30.0%</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># Yellow cheese</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">janitor<span class="op">::</span><span class="kw">tabyl</span>(redcap<span class="op">$</span>ingredients___<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">redcap$ingredients___2</th>
+<th align="right">n</th>
+<th align="left">percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Unchecked</td>
+<td align="right">23</td>
+<td align="left">76.7%</td>
+</tr>
+<tr class="even">
+<td align="left">Checked</td>
+<td align="right">7</td>
+<td align="left">23.3%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="make-analysis-data" class="section level1">
+<h1>Make Analysis Data</h1>
+<p>Even after subsetting the REDCap data to only include the ingredients variables, it is still difficult to detect common patterns in the eight ingredients.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">redcap &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file =</span> <span class="st">&quot;./redcap.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">suppressPackageStartupMessages</span>(</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">analysis &lt;-<span class="st"> </span>redcap <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;ingredients___&quot;</span>)) </a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">  </a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">tail</span>(analysis))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">ingredients___1</th>
+<th align="left">ingredients___2</th>
+<th align="left">ingredients___3</th>
+<th align="left">ingredients___4</th>
+<th align="left">ingredients___5</th>
+<th align="left">ingredients___6</th>
+<th align="left">ingredients___7</th>
+<th align="left">ingredients___8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>25</td>
+<td align="left">Checked</td>
+<td align="left">Checked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Checked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+</tr>
+<tr class="even">
+<td>26</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+</tr>
+<tr class="odd">
+<td>27</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+</tr>
+<tr class="odd">
+<td>29</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td align="left">Checked</td>
+<td align="left">Checked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Unchecked</td>
+<td align="left">Checked</td>
+<td align="left">Unchecked</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-solution" class="section level1">
+<h1>The Solution</h1>
+<div id="default-lettering" class="section level2">
+<h2>Default Lettering</h2>
+<p>The <code>make_binary_word()</code> function combines responses from the individual variables into a single “word” that indicates which choices were selected. For example, if the first option from the NCI ingredient question, <em>chips</em> (i.e., ingredients___1), was checked, the word created by <code>make_binary_word()</code> will begin with <em>a</em>; or if it was not checked, the word will begin with <em>_</em>. If the second option, <em>Yellow cheese</em> (i.e., ingredients___2), was checked, the next letter will be a <em>b</em>, otherwise a <em>_</em> will be used as a placeholder. Following this pattern, if somebody is not craving any of the eight nacho ingredients, the “word” will be eight underscores, one for each ingredient (i.e., ________). Conversely, if they are craving every ingredient, the “word” will be <em>abcdefgh</em>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">patterns &lt;-<span class="st"> </span><span class="kw">make_binary_word</span>(analysis) </a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">janitor<span class="op">::</span><span class="kw">tabyl</span>(patterns)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;  patterns  n    percent</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;  ________ 20 0.66666667</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;  ______gh  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;  a_c__f_h  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;  a_cdefgh  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;  ab____g_  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;  ab___f__  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  ab___f_h  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  ab__efgh  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  ab_de_gh  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;  ab_defgh  1 0.03333333</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;  abcdef_h  1 0.03333333</span></a></code></pre></div>
+</div>
+<div id="custom-lettering" class="section level2">
+<h2>Custom Lettering</h2>
+<p>While the default lettering is somewhat useful, using meaningful (mnemonic) letters makes the binary words easier to understand. In this case, the first letter for each choice can be used as a useful mnemonic.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Abbreviation</th>
+<th align="left">Ingredient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">Chips</td>
+</tr>
+<tr class="even">
+<td align="left">Y</td>
+<td align="left">Yellow cheese</td>
+</tr>
+<tr class="odd">
+<td align="left">O</td>
+<td align="left">Orange cheese</td>
+</tr>
+<tr class="even">
+<td align="left">W</td>
+<td align="left">White cheese</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">Meat</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">Beans</td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">Tomatoes</td>
+</tr>
+<tr class="even">
+<td align="left">P</td>
+<td align="left">Peppers</td>
+</tr>
+</tbody>
+</table>
+<p>To use custom lettering, specify a vector of single letter abbreviations and pass it to the <code>the_labels</code> argument. Be sure to include one unique abbreviation for each column of the data frame. For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;W&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;P&quot;</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">patterns &lt;-<span class="st"> </span><span class="kw">make_binary_word</span>(analysis, <span class="dt">the_labels =</span> labels)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">janitor<span class="op">::</span><span class="kw">tabyl</span>(patterns)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;  patterns  n    percent</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  CYOWMB_P  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  CY_WMBTP  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  CY_WM_TP  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  CY__MBTP  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  CY___B_P  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  CY___B__  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  CY____T_  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;  C_OWMBTP  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;  C_O__B_P  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;  ______TP  1 0.03333333</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt;  ________ 20 0.66666667</span></a></code></pre></div>
+<p>The summary table shows that 20 people did not provide information about what ingredients they crave. The remaining people do not show any recurring patterns, but many people craved both chips and yellow cheese together.</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
