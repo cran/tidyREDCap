@@ -4,19 +4,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----setup--------------------------------------------------------------------
+## ----setup, message=FALSE-----------------------------------------------------
 library(tidyREDCap)
-
-## ----getData, eval=FALSE------------------------------------------------------
-#  
-#  rcon <- redcapAPI::redcapConnection(
-#    url = 'https://redcap.miami.edu/api/',
-#    token = Sys.getenv("NCI_API_Key")
-#  )
-#  
-#  redcap <- redcapAPI::exportRecords(rcon)
-#  
-#  saveRDS(redcap, file = "redcap.rds")
+library(dplyr)
 
 ## ----univariate---------------------------------------------------------------
 redcap <- readRDS(file = "./redcap.rds")
@@ -32,12 +22,18 @@ janitor::tabyl(redcap$ingredients___2) %>%
   knitr::kable()
 
 
+## ----getData, eval=FALSE------------------------------------------------------
+#  rcon <- redcapAPI::redcapConnection(
+#    url = 'https://redcap.miami.edu/api/',
+#    token = Sys.getenv("NCI_API_Key")
+#  )
+#  
+#  redcap <- redcapAPI::exportRecords(rcon)
+#  
+#  saveRDS(redcap, file = "redcap.rds")
+
 ## ----loadData-----------------------------------------------------------------
 redcap <- readRDS(file = "./redcap.rds")
-
-suppressPackageStartupMessages(
-  library(dplyr)
-)
 
 analysis <- redcap %>% 
   select(starts_with("ingredients___")) 

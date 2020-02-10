@@ -1,3 +1,27 @@
+# tidyREDCap 0.2.0 (CRAN release)
+
+* Cleaned up vignettes, docs
+
+# tidyREDCap 0.1.3.1 
+
+* Cleaned up vignettes, docs
+
+# tidyREDCap 0.1.3.0 
+
+* Added `make_choose_all_table()` function
+
+# tidyREDCap 0.1.2.1 
+
+* Cleaned up vignettes
+
+# tidyREDCap 0.1.2 
+
+* Added `make_instrument()` function
+
+# tidyREDCap 0.1.1
+
+* Added `make_choose_one_table()` function
+
 # tidyREDCap 0.1.0 (CRAN release)
 
 * Fixed title capitalization.
