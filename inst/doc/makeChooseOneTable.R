@@ -14,14 +14,6 @@ redcap$ingredients___1
 ## -----------------------------------------------------------------------------
 table(redcap$ingredients___1)
 
-## ----getData, eval=FALSE------------------------------------------------------
-#  rcon <- redcapAPI::redcapConnection(
-#    url = 'https://redcap.miami.edu/api/',
-#    token = Sys.getenv("NCI_API_Key")
-#  )
-#  
-#  redcap <- redcapAPI::exportRecords(rcon)
-
 ## ----example_raw--------------------------------------------------------------
 make_choose_one_table(redcap$ingredients___1) 
 

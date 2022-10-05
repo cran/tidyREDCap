@@ -22,16 +22,6 @@ janitor::tabyl(redcap$ingredients___2) %>%
   knitr::kable()
 
 
-## ----getData, eval=FALSE------------------------------------------------------
-#  rcon <- redcapAPI::redcapConnection(
-#    url = 'https://redcap.miami.edu/api/',
-#    token = Sys.getenv("NCI_API_Key")
-#  )
-#  
-#  redcap <- redcapAPI::exportRecords(rcon)
-#  
-#  saveRDS(redcap, file = "redcap.rds")
-
 ## ----loadData-----------------------------------------------------------------
 redcap <- readRDS(file = "./redcap.rds")
 

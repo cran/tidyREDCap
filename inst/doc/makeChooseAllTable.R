@@ -14,14 +14,6 @@ redcap %>%
   select(starts_with("ingredients___")) %>% 
   head()
 
-## ----getData, eval=FALSE------------------------------------------------------
-#  rcon <- redcapAPI::redcapConnection(
-#    url = 'https://redcap.miami.edu/api/',
-#    token = Sys.getenv("NCI_API_Key")
-#  )
-#  
-#  redcap <- redcapAPI::exportRecords(rcon)
-
 ## ----show_results-------------------------------------------------------------
 make_choose_all_table(redcap, "ingredients") 
 

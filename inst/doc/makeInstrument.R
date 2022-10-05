@@ -21,16 +21,6 @@ redcap %>%
   # Make the table pretty
   knitr::kable()
 
-## ----getData, eval=FALSE------------------------------------------------------
-#  rcon <- redcapAPI::redcapConnection(
-#    url = 'https://redcap.miami.edu/api/',
-#    token = Sys.getenv("nacho_anxiety_Key")
-#  )
-#  
-#  redcap_nacho_anxiety <- redcapAPI::exportRecords(rcon)
-#  
-#  saveRDS(redcap_nacho_anxiety, file = "redcap_nacho_anxiety.rds")
-
 ## -----------------------------------------------------------------------------
 make_instrument(redcap, "concented", "enrollment_complete") %>% 
   knitr::kable()
