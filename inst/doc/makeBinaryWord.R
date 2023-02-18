@@ -8,7 +8,7 @@ knitr::opts_chunk$set(
 library(tidyREDCap)
 library(dplyr)
 
-## ----univariate---------------------------------------------------------------
+## ----univariate, warning=FALSE------------------------------------------------
 redcap <- readRDS(file = "./redcap.rds")
 
 # Chips
