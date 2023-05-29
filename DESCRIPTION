@@ -1,6 +1,6 @@
 Package: tidyREDCap
 Title: Helper Functions for Working with 'REDCap' Data
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
     c(person(
         given = "Raymond",
@@ -43,6 +43,13 @@ Authors@R:
         role = "ctb",
         email = "lxn295@miami.edu",
         comment = c(ORCID = "0000-0001-6241-2615")
+      ),
+      person(
+        given = "Kyle",
+        family = "Grealis",
+        role = "aut",
+        email = "kxg679@miami.edu",
+        comment = c(ORCID = "0000-0002-9223-8854")
       )
     )
 Description: 
@@ -54,20 +61,21 @@ Encoding: UTF-8
 RoxygenNote: 7.2.3
 Depends: R (>= 3.5.0)
 Imports: cli, dplyr, janitor, labelVector, magrittr, purrr, REDCapR,
-        rlang, stringr, tibble, tidyr, tidyselect
+        rlang, stringr, tibble, tidyr, tidyselect, vctrs
 Suggests: knitr, redcapAPI, rmarkdown, skimr, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://raymondbalise.github.io/tidyREDCap/index.html
 BugReports: https://github.com/RaymondBalise/tidyREDCap/issues
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2023-02-18 17:37:28 UTC; rrb28
+Packaged: 2023-05-29 13:21:02 UTC; rrb28
 Author: Raymond Balise [aut, cre] (<https://orcid.org/0000-0002-9856-5901>),
   Gabriel Odom [aut] (<https://orcid.org/0000-0003-1341-4555>),
   Anna Calderon [aut] (<https://orcid.org/0000-0002-0139-3841>),
   Layla Bouzoubaa [aut] (<https://orcid.org/0000-0002-6616-0950>),
   Wayne DeFreitas [aut] (<https://orcid.org/0000-0002-2584-6278>),
-  Lauren Nahodyl [ctb] (<https://orcid.org/0000-0001-6241-2615>)
+  Lauren Nahodyl [ctb] (<https://orcid.org/0000-0001-6241-2615>),
+  Kyle Grealis [aut] (<https://orcid.org/0000-0002-9223-8854>)
 Maintainer: Raymond Balise <balise@miami.edu>
 Repository: CRAN
-Date/Publication: 2023-02-18 18:10:02 UTC
+Date/Publication: 2023-05-29 16:30:02 UTC

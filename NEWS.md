@@ -1,3 +1,18 @@
+# tidyREDCap 1.1.1 (CRAN release)
+
+## New features
+
+* Add `make_yes_no()` function to convert "checked" or "yes"-like answers to 
+  "Yes" and other answers to "No or Unknown".
+* Add `make_yes_no_unknown()` function to convert "checked" or "yes"-like 
+  answers to "Yes"", unchecked or "no"-like answers to "No" and other answers to
+  "Unknown".
+  
+## Fixes/Changes
+* `make_choose_all_table()` now works with api or manual/point-and-click 
+  exports.
+## Added S3 methods so dplyr (and friends) can work with labelled objects
+
 # tidyREDCap 1.1.0  (CRAN release)
 
 ## New features

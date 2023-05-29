@@ -378,6 +378,8 @@ details/information.</p>
 </div>
 <div id="the-solution" class="section level1">
 <h1>The Solution</h1>
+<div id="data-loaded-with-import_instruments" class="section level2">
+<h2>Data Loaded with <code>import_instruments()</code></h2>
 <p>If you pass the <code>make_choose_all_table()</code> function, the
 name of a REDCap export, and the name of the <em>choose all that apply
 question</em> question in REDCap, it will produce a concise frequency
@@ -442,6 +444,28 @@ use this function inside an analysis pipeline. We can add the
 </tr>
 </tbody>
 </table>
+</div>
+<div id="data-exported-with-data-exports-reports-and-stats-in-redcap" class="section level2">
+<h2>Data Exported with “Data Exports, Reports and Stats” in REDCap</h2>
+<p>If you export data using the point-and-click tools built into REDCap
+you end up with two files, one contains R code the other data. When you
+run the code you end up with a dataset called <code>data</code> which
+contains two copies of some of the information. For example, if you
+download the Nacho Craving Index you will see the ingredients variables,
+showing what ingredients people are craving, and a second copy of the
+variables that have <code>.factor</code> tagged to the end of the names.
+The factor versions do not have the variable labels. So you will need to
+subset the data to drop them. The example below shows the process. Note
+we have copied the <code>data</code> data frame to have a more
+meaningful name.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the data produced by exporting using point-and-click REDCap export.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>manual_export <span class="ot">&lt;-</span> data</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>manual_export <span class="sc">|&gt;</span>   </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;ingredient&quot;</span>)) <span class="sc">|&gt;</span> <span class="co"># get all the ingredient variables</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;.factor&quot;</span>)) <span class="sc">|&gt;</span>     <span class="co"># drop the factor version of the ingredient variables</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make_choose_all_table</span>(<span class="st">&quot;ingredient&quot;</span>)  <span class="co"># make the table</span></span></code></pre></div>
+</div>
 </div>
 
 
