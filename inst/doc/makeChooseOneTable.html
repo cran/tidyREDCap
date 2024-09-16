@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyREDCap)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyREDCap)</span></code></pre></div>
 <p></br></p>
 <div id="the-problem" class="section level1">
 <h1>The Problem</h1>
@@ -352,27 +352,27 @@ are not presented professionally.</p>
 <p>For example, in the Nacho Craving Index data, the first ingredient is
 “Chips”. We see how R presents this information by simply printing the
 components of the <code>ingredients___1</code> column.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./redcap.rds&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>redcap<span class="sc">$</span>ingredients___1</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># What ingredients do you currently crave?: Chips</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  [1] Checked   Checked   Unchecked Unchecked Unchecked Unchecked Checked  </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  [8] Unchecked Unchecked Unchecked Unchecked Unchecked Checked   Unchecked</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [15] Unchecked Checked   Unchecked Unchecked Checked   Unchecked Unchecked</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [22] Unchecked Checked   Unchecked Checked   Unchecked Unchecked Unchecked</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [29] Unchecked Checked  </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(,&quot;redcapLabels&quot;)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] Unchecked Checked  </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(,&quot;redcapLevels&quot;)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 0 1</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Levels: Unchecked Checked</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./redcap.rds&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>redcap<span class="sc">$</span>ingredients___1</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># What ingredients do you currently crave?: Chips</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#  [1] Checked   Checked   Unchecked Unchecked Unchecked Unchecked Checked  </span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#  [8] Unchecked Unchecked Unchecked Unchecked Unchecked Checked   Unchecked</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># [15] Unchecked Checked   Unchecked Unchecked Checked   Unchecked Unchecked</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># [22] Unchecked Checked   Unchecked Checked   Unchecked Unchecked Unchecked</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># [29] Unchecked Checked  </span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># attr(,&quot;redcapLabels&quot;)</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># [1] Unchecked Checked  </span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co"># attr(,&quot;redcapLevels&quot;)</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># [1] 0 1</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Levels: Unchecked Checked</span></span></code></pre></div>
 <p>As we can see, this information is quite ugly, so we want to tabulate
 the results instead. However, if we use the simple <code>table()</code>
 function to clean up this information, we lose the original question and
 the answer label for <code>ingredients___1</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(redcap<span class="sc">$</span>ingredients___1)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unchecked   Checked </span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#        21         9</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">table</span>(redcap<span class="sc">$</span>ingredients___1)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Unchecked   Checked </span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#        21         9</span></span></code></pre></div>
 <p>We no longer know what the question was or which “select all” option
 this information represents.</p>
 <div id="aside-loading-redcap-data-into-r" class="section level2">
@@ -387,15 +387,15 @@ details/information.</p>
 <p>The <code>make_choose_one_table()</code> function can be used with a
 factor variable to tabulate the response <em>while preserving the
 question and checked option context</em>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_choose_one_table</span>(redcap<span class="sc">$</span>ingredients___1) </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># What ingredients do you currently crave?: Chips</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   Response  n percent</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  Unchecked 21     70%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    Checked  9     30%</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">make_choose_one_table</span>(redcap<span class="sc">$</span>ingredients___1) </span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># What ingredients do you currently crave?: Chips</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#   Response  n percent</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#  Unchecked 21     70%</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#    Checked  9     30%</span></span></code></pre></div>
 <p>Further, this output can be molded into a publication-ready table
 with a single additional function call.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_choose_one_table</span>(redcap<span class="sc">$</span>ingredients___1) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">make_choose_one_table</span>(redcap<span class="sc">$</span>ingredients___1) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <p>What ingredients do you currently crave?: Chips</p>
 <table>
 <thead>
@@ -422,11 +422,11 @@ with a single additional function call.</p>
 cause the function to remove the label’s text and only show the response
 option (i.e., not repeat the “What ingredients do you currently crave?”
 question).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_choose_one_table</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  redcap<span class="sc">$</span>ingredients___2,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">subset =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">make_choose_one_table</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  redcap<span class="sc">$</span>ingredients___2,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">subset =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <p>Yellow cheese</p>
 <table>
 <thead>
@@ -452,9 +452,9 @@ question).</p>
 <p>This function can also be used in an analysis pipeline with a data
 frame name and the name of the factor inside that data frame. For
 example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>redcap <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make_choose_one_table</span>(ingredients___3) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>redcap <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">make_choose_one_table</span>(ingredients___3) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() </span></code></pre></div>
 <p>What ingredients do you currently crave?: Orange cheese</p>
 <table>
 <thead>

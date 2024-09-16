@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyREDCap)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyREDCap)</span></code></pre></div>
 <div id="loading-redcap-data-into-r-with-an-api-request" class="section level1">
 <h1>Loading REDCap Data into R with an API request</h1>
 <p>While most people use the “Data Exports, Reports and Stats”
@@ -385,11 +385,11 @@ your API token. Remember, this is the same information as your username
 and password. <strong>NEVER</strong> type that directly in your code.
 That is if your REDCap API key is “1A2B3CXXYYZZOOMMGOSHNOOOOX1Y2Z3” do
 NOT do this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not type your API token directly into your code</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tidyREDCap<span class="sc">::</span><span class="fu">import_instruments</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://redcap.miami.edu/api/&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;1A2B3CXXYYZZOOMMGOSHNOOOOX1Y2Z3&quot;</span> <span class="co"># This is BAD!</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Do not type your API token directly into your code</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>tidyREDCap<span class="sc">::</span><span class="fu">import_instruments</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="st">&quot;https://redcap.miami.edu/api/&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="st">&quot;1A2B3CXXYYZZOOMMGOSHNOOOOX1Y2Z3&quot;</span> <span class="co"># This is BAD!</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>If you do this, anybody who gets a copy of your code will be able to
 access your REDCap project. Also, whenever your run this line of code,
 the API token will be saved into your R history files.</p>
@@ -403,8 +403,8 @@ bit of a pain to find. So your best plan is to install the
 a function to find this file. If you use the RStudio interface, you can
 add it using the Packages window pane or run these lines in the console
 once.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_cran</span>(<span class="st">&quot;usethis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_cran</span>(<span class="st">&quot;usethis&quot;</span>)</span></code></pre></div>
 <p>When it comes time to add packages to your copy of R, the
 <code>install_cran()</code> function in the <code>remotes</code> package
 is superior to the usual <code>install.packages()</code> function
@@ -412,7 +412,7 @@ because it will first check to see if you already have the latest
 version before bothering to download and install.</p>
 <p>After installing <code>usethis</code> you can access your “.Renviron”
 file by typing this in your console.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code></pre></div>
 <p>It will cause the file to open.</p>
 <p>Create a name for your API key and add a like like this to your
 .Renviron file:</p>
@@ -420,31 +420,31 @@ file by typing this in your console.</p>
 <p>After adding the line, remember to save the file and completely
 restart R/RStudio.</p>
 <p>Once R restarts, you can access the key like this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tidyREDCap<span class="sc">::</span><span class="fu">import_instruments</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://redcap.miami.edu/api/&quot;</span>, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.getenv</span>(<span class="st">&quot;nacho_anxiety_key&quot;</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>tidyREDCap<span class="sc">::</span><span class="fu">import_instruments</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="st">&quot;https://redcap.miami.edu/api/&quot;</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">Sys.getenv</span>(<span class="st">&quot;nacho_anxiety_key&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>)</span></code></pre></div>
 <p>If you want to use the redcapAPI or the REDCapR packages directly you
 can use the same trickery to pass your API key to their functions. For
 example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rcon <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">redcapConnection</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">&#39;https://redcap.miami.edu/api/&#39;</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">token =</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;nacho_anxiety_key&quot;</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">exportRecords</span>(rcon)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>rcon <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">redcapConnection</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">&#39;https://redcap.miami.edu/api/&#39;</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">token =</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;nacho_anxiety_key&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">exportRecords</span>(rcon)</span></code></pre></div>
 <p>This includes a call to <code>Sys.getenv()</code> to grab the key. To
 learn more about working with APIs, look <a href="https://daattali.gitbooks.io/stat545-ubc-github-io/bit003_api-key-env-var.html">here</a>.</p>
 <p>If you are curious, when we made these help files, we saved the data
 using the <code>saveRDS()</code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rcon <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">redcapConnection</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">&#39;https://redcap.miami.edu/api/&#39;</span>, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">token =</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;nacho_anxiety_key&quot;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">exportRecords</span>(rcon)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(redcap, <span class="at">file =</span> <span class="st">&quot;redcap.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>rcon <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">redcapConnection</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">&#39;https://redcap.miami.edu/api/&#39;</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="at">token =</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;nacho_anxiety_key&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> redcapAPI<span class="sc">::</span><span class="fu">exportRecords</span>(rcon)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="fu">saveRDS</span>(redcap, <span class="at">file =</span> <span class="st">&quot;redcap.rds&quot;</span>)</span></code></pre></div>
 <p></br> </br></p>
 </div>
 </div>
