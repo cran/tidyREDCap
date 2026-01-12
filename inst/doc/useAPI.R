@@ -8,12 +8,12 @@ knitr::opts_chunk$set(
 library(tidyREDCap)
 
 ## ----getData, eval=FALSE------------------------------------------------------
-#  rcon <- redcapAPI::redcapConnection(
-#    url = 'https://redcap.miami.edu/api/',
-#    token = Sys.getenv("nacho_anxiety_key")
-#  )
-#  
-#  redcap <- redcapAPI::exportRecords(rcon)
-#  
-#  saveRDS(redcap, file = "redcap.rds")
+# rcon <- redcapAPI::redcapConnection(
+#   url = 'https://redcap.miami.edu/api/',
+#   token = keyring::key_get("nacho_anxiety_key")
+# )
+# 
+# redcap <- redcapAPI::exportRecords(rcon)
+# 
+# saveRDS(redcap, file = "redcap.rds")
 

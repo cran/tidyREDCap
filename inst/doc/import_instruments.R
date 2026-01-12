@@ -8,16 +8,16 @@ knitr::opts_chunk$set(
 library(tidyREDCap)
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  # Do not type your API token directly into your code
-#  tidyREDCap::import_instruments(
-#    url = "https://redcap.miami.edu/api/",
-#    token = "1A2B3CXXYYZZOOMMGOSHNOOOOX1Y2Z3" # This is BAD!
-#  )
-#  
-#  # A better way to do this is to read the API key from the .Renviron file.
-#  #   For instructions on saving your API key, see link below.
-#  tidyREDCap::import_instruments(
-#    url = "https://redcap.miami.edu/api/",
-#    token = Sys.getenv("nacho_anxiety_key")  # This is BETTER!
-#  )
+# # Do not type your API token directly into your code
+# tidyREDCap::import_instruments(
+#   url = "https://redcap.miami.edu/api/",
+#   token = "1A2B3CXXYYZZOOMMGOSHNOOOOX1Y2Z3" # This is BAD!
+# )
+# 
+# # A better way to do this is to read the API key saved in your operating system
+# #   For instructions on saving your API key, see link below.
+# tidyREDCap::import_instruments(
+#   url = "https://redcap.miami.edu/api/",
+#   token = keyring::key_get("nacho_anxiety_key")  # This is BETTER!
+# )
 

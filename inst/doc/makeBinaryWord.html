@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -364,11 +365,11 @@ within the REDCap interface and selecting “Stats &amp; Charts”. Once the
 data is in R, simple tables can be produced with the
 <code>table()</code> function, or beautiful tables can be created with
 the <code>tabyl()</code> and <code>adorn_pct_formatting()</code>
-functions from the <code>janitor</code> package. However, from these
-univariate tables, it is impossible to judge which patterns of answers
-are marked together. In the above example, using the univariate tables,
-it is difficult to tell what percentage of people are craving both chips
-and yellow cheese.</p>
+functions from the <a href="https://sfirke.github.io/janitor/index.html"><code>janitor</code></a>
+package. However, from these univariate tables, it is impossible to
+judge which patterns of answers are marked together. In the above
+example, using the univariate tables, it is difficult to tell what
+percentage of people are craving both chips and yellow cheese.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>redcap <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./redcap.rds&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Chips</span></span>
@@ -424,9 +425,9 @@ and yellow cheese.</p>
 </table>
 <div id="aside-loading-redcap-data-into-r" class="section level2">
 <h2>Aside: Loading REDCap Data into R</h2>
-<p>See the <a href="../doc/importInstruments.html">Import All
-Instruments from a REDCap Project</a> and <a href="../doc/useAPI.html">Importing from REDCap</a> vignettes for
-details/information.</p>
+<p>See the <a href="./import_instruments.html">Import All Instruments
+from a REDCap Project</a> and <a href="./useAPI.html">Importing from
+REDCap</a> vignettes for details/information.</p>
 </div>
 </div>
 <div id="make-analysis-data" class="section level1">

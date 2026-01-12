@@ -8,10 +8,10 @@ knitr::opts_chunk$set(
 library(tidyREDCap)
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  tidyREDCap::import_instruments(
-#    url = "https://bbmc.ouhsc.edu/redcap/api/",
-#    token = Sys.getenv("REDCapR_test")
-#  )
+# tidyREDCap::import_instruments(
+#   url = "https://bbmc.ouhsc.edu/redcap/api/",
+#   token = keyring::key_get("REDCapR_test")
+# )
 
 ## ----hidden-data-load, echo=FALSE---------------------------------------------
 demographics <- structure(
@@ -85,14 +85,16 @@ demographics <- structure(
 )
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  View(demographics)
+# View(demographics)
 
 ## ----skim-demo, error=TRUE----------------------------------------------------
+try({
 library(skimr)  # for the skim() function
 demographics |> skim()
+})
 
 ## -----------------------------------------------------------------------------
-demographics_changed <- drop_label(demographics, "first_name")
+demographics_changed <- drop_label(demographics, "name_first")
 
 ## -----------------------------------------------------------------------------
 demographics_without_labels <- drop_labels(demographics)
