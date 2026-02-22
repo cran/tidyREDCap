@@ -3,6 +3,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dplyr)
 
 ## ----setup--------------------------------------------------------------------
 library(tidyREDCap)
@@ -69,6 +70,11 @@ demographics <- structure(
       label = "Age (years)",
       class = c("labelled", "numeric")
     ),
+    days = structure(
+      c(1, 2, 3, 4, 5),
+      label = "Days",
+      class = c("labelled", "numeric")
+    ),    
     sex = structure(
       c("Female", "Male", "Male", "Female", "Male"),
       label = "Gender",
@@ -87,18 +93,16 @@ demographics <- structure(
 ## ----eval=FALSE---------------------------------------------------------------
 # View(demographics)
 
-## ----skim-demo, error=TRUE----------------------------------------------------
+## ----show-error, error=TRUE---------------------------------------------------
 try({
-library(skimr)  # for the skim() function
-demographics |> skim()
+demographics |> 
+  rowwise() |> 
+  mutate(x = sum(c_across(c(age, days))))
 })
 
-## -----------------------------------------------------------------------------
-demographics_changed <- drop_label(demographics, "name_first")
+## ----drop-label-dataset-------------------------------------------------------
+demographics_without_labels <- drop_label(demographics)
 
-## -----------------------------------------------------------------------------
+## ----warning=TRUE-------------------------------------------------------------
 demographics_without_labels <- drop_labels(demographics)
-
-demographics_without_labels |> 
-  skim()
 

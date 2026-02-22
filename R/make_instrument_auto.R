@@ -13,19 +13,23 @@
 #' @export
 #'
 ## @examples
-make_instrument_auto <- function(df, drop_which_when = FALSE,
-                                 record_id = "record_id") {
+make_instrument_auto <- function(
+  df,
+  drop_which_when = FALSE,
+  record_id = "record_id"
+) {
   if (names(df)[1] != record_id) {
-    stop("
+    stop(
+      "
          The first variable in df must be `record_id`;
-         use option 'record_id=' to set the name of your custom id.", call. = FALSE)
+         use option 'record_id=' to set the name of your custom id.",
+      call. = FALSE
+    )
   }
-
 
   # Strip labels from REDCap created variables to prevent reported join (and
   #   perhaps pivot) issues on labeled variables.
   df <- drop_label(df, record_id)
-
 
   is_longitudinal <- any(names(df) == "redcap_event_name")
 
@@ -69,37 +73,49 @@ make_instrument_auto <- function(df, drop_which_when = FALSE,
     record_id_col <- which(colnames(df) == record_id)
     redcap_event_name_col <- which(colnames(df) == "redcap_event_name")
     record_repeat_inst_col <- which(colnames(df) == "redcap_repeat_instance")
-    
+
     if (is_longitudinal) {
-        # Select rows that have data with a repeat number     
-      if (is_repeated & !all(is.na(df[!allMissing,record_repeat_inst_col]))) {
-        return(df[!allMissing, c(
-          record_id_col,
-          redcap_event_name_col,
-          record_repeat_inst_col,
-          first_col:last_col
-        )])
+      # Select rows that have data with a repeat number
+      if (is_repeated & !all(is.na(df[!allMissing, record_repeat_inst_col]))) {
+        return(df[
+          !allMissing,
+          c(
+            record_id_col,
+            redcap_event_name_col,
+            record_repeat_inst_col,
+            first_col:last_col
+          )
+        ])
       } else {
         # Longitudinal not repeated instruments
-        return(df[!allMissing, c(
-          record_id_col,
-          redcap_event_name_col,
-          first_col:last_col
-        )])
+        return(df[
+          !allMissing,
+          c(
+            record_id_col,
+            redcap_event_name_col,
+            first_col:last_col
+          )
+        ])
       }
     } else {
-      # Select rows that have data with a repeat number   
-      if (is_repeated & !all(is.na(df[!allMissing,record_repeat_inst_col]))) {
-        return(df[!allMissing, c(
-          record_id_col,
-          record_repeat_inst_col,
-          first_col:last_col
-        )])
+      # Select rows that have data with a repeat number
+      if (is_repeated & !all(is.na(df[!allMissing, record_repeat_inst_col]))) {
+        return(df[
+          !allMissing,
+          c(
+            record_id_col,
+            record_repeat_inst_col,
+            first_col:last_col
+          )
+        ])
       } else {
-        return(df[!allMissing, c(
-          record_id_col,
-          first_col:last_col
-        )])
+        return(df[
+          !allMissing,
+          c(
+            record_id_col,
+            first_col:last_col
+          )
+        ])
       }
     }
   } else {
@@ -155,21 +171,3 @@ fix_class_bug <- function(df) {
   return(df)
 }
 "fix_class_bug"
-
-
-#' Drop the label from a variable
-#' @description There is a reported issues with joins on data (without a reprex)
-#' that seem to be caused by the labels.  As a possible solution this can be
-#' used to drop labels.
-#'
-#' @param df the name of the data frame
-#' @param x the quoted name of the variable
-#'
-#' @export
-#'
-#'
-#' @return df
-drop_label <- function(df, x) {
-  attributes(df[, which(names(df) == x)]) <- NULL
-  df
-}

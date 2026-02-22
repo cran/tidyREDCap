@@ -16,7 +16,7 @@ target <- structure(
       # processing. Removed these attributes from test fixture to match actual
       # REDCapR output behavior in tibble format.
       # See: https://github.com/OuhscBbmc/REDCapR/releases/tag/v1.2.0 (#415)
-      label = "Study ID", 
+      # label = "Study ID", 
       # class = c("labelled", "numeric")
       class = c("numeric")
     ), 
@@ -82,8 +82,8 @@ target <- structure(
 
 # creates demographics
 tidyREDCap::import_instruments(
-  "https://bbmc.ouhsc.edu/redcap/api/",
-  "9A81268476645C4E5F03428B8AC3AA7B"
+  "https://redcap-dev-2.ouhsc.edu/redcap/api/",
+  "9A068C425B1341D69E83064A2D273A70"
 )
 
 
